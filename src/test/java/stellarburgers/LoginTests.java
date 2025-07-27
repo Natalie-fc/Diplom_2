@@ -53,11 +53,22 @@ public class LoginTests extends BaseTest {
 
     @Test
     @Story("Неуспешный вход")
-    @Description("Пользователь не должен войти при вводе неверного email и пароля")
-    public void shouldNotLoginWithInvalidCredentials() {
-        LoginRequest invalidLogin = new LoginRequest("wrong" + user.getEmail(), "wrongPassword");
+    @Description("Пользователь не должен войти при вводе неверного email")
+    public void shouldNotLoginWithInvalidEmail() {
+        LoginRequest loginRequest = new LoginRequest("wrong" + user.getEmail(), user.getPassword());
 
-        userSteps.login(invalidLogin)
+        userSteps.login(loginRequest)
+                .statusCode(SC_UNAUTHORIZED)
+                .body("message", containsString("email or password are incorrect"));
+    }
+
+    @Test
+    @Story("Неуспешный вход")
+    @Description("Пользователь не должен войти при вводе неверного пароля")
+    public void shouldNotLoginWithInvalidPassword() {
+        LoginRequest loginRequest = new LoginRequest(user.getEmail(), "wrongPassword");
+
+        userSteps.login(loginRequest)
                 .statusCode(SC_UNAUTHORIZED)
                 .body("message", containsString("email or password are incorrect"));
     }
