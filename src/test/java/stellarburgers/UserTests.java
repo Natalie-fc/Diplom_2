@@ -42,9 +42,6 @@ public class UserTests extends BaseTest {
         userSteps.register(user)
                 .statusCode(SC_OK)
                 .body("success", is(true));
-
-        accessToken = userSteps.getAccessToken(user);
-
     }
 
     @Test
@@ -100,9 +97,15 @@ public class UserTests extends BaseTest {
     @After
     @Step("Удаление тестового пользователя через API")
     public void tearDown() {
-        if (accessToken != null) {
-            userSteps.deleteUser(accessToken);
-
+        if (user != null) {
+            try {
+                accessToken = userSteps.getAccessToken(user);
+                if (accessToken != null) {
+                    userSteps.deleteUser(accessToken);
+                }
+            } catch (Exception e) {
+                System.out.println("Не удалось получить токен для удаления пользователя: " + e.getMessage());
+            }
         }
     }
 }
