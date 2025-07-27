@@ -1,6 +1,7 @@
 package stellarburgers;
 
 import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -40,6 +41,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Успешный вход с корректными email и паролем")
     @Story("Успешный вход")
     @Description("Пользователь должен успешно войти при вводе правильного email и пароля")
     public void shouldLoginWithValidCredentials() {
@@ -52,6 +54,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Вход с неверным email")
     @Story("Неуспешный вход")
     @Description("Пользователь не должен войти при вводе неверного email")
     public void shouldNotLoginWithInvalidEmail() {
@@ -63,6 +66,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Вход с неверным паролем")
     @Story("Неуспешный вход")
     @Description("Пользователь не должен войти при вводе неверного пароля")
     public void shouldNotLoginWithInvalidPassword() {
