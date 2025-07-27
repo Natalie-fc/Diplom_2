@@ -1,6 +1,7 @@
 package stellarburgers;
 
 import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -45,6 +46,7 @@ public class OrderTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Создание заказа с авторизацией и валидными ингредиентами")
     @Story("Создание заказа")
     @Description("Пользователь может создать заказ с авторизацией и валидными ингредиентами")
     public void shouldCreateOrderWithAuth() {
@@ -60,6 +62,7 @@ public class OrderTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Создание заказа без авторизации и валидными ингредиентами")
     @Story("Создание заказа")
     @Description("Пользователь может создать заказ без авторизации и валидными ингредиентами")
     public void shouldCreateOrderWithoutAuth() {
@@ -74,6 +77,7 @@ public class OrderTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Создание заказа с авторизацией без ингредиентов")
     @Story("Создание заказа")
     @Description("Нельзя создать заказ с авторизацией без ингредиентов")
     public void shouldNotCreateOrderWithoutIngredientsWithAuth() {
@@ -83,6 +87,7 @@ public class OrderTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Создание заказа без авторизации без ингредиентов")
     @Story("Создание заказа")
     @Description("Нельзя создать заказ без авторизации без ингредиентов")
     public void shouldNotCreateOrderWithoutIngredientsWithoutAuth() {
@@ -92,6 +97,7 @@ public class OrderTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Создание заказа с невалидным ингредиентом")
     @Story("Создание заказа")
     @Description("Попытка создать заказ с невалидным ингредиентом возвращает 500")
     public void shouldNotCreateOrderWithInvalidIngredient() {

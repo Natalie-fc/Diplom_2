@@ -1,6 +1,7 @@
 package stellarburgers;
 
 import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -33,6 +34,7 @@ public class UserTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Успешная регистрация нового пользователя")
     @Story("Создание нового пользователя")
     @Description("Проверка успешной регистрации нового пользователя")
     public void shouldCreateUserTest() {
@@ -46,6 +48,7 @@ public class UserTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Регистрация уже существующего пользователя")
     @Story("Создание нового пользователя")
     @Description("Проверка, что нельяза зарегистрировать существующего пользователя дважды")
     public void shouldNotAllowToCreateExistingUserTest() {
@@ -58,6 +61,7 @@ public class UserTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Регистрация нового пользователя без email")
     @Story("Проверка валидации")
     @Description("Регистрация должна завершиться ошибкой если не указан email")
     public void shouldNotCreateUserWithoutEmail() {
@@ -70,6 +74,7 @@ public class UserTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Регистрация нового пользователя без пароля")
     @Story("Проверка валидации")
     @Description("Регистрация должна завершиться ошибкой если не указан пароль")
     public void shouldNotCreateUserWithoutPassword() {
@@ -81,6 +86,7 @@ public class UserTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Регистрация нового пользователя без имени")
     @Story("Проверка валидации")
     @Description("Регистрация должна завершиться ошибкой если не указано имя")
     public void shouldNotCreateUserWithoutName() {
@@ -99,5 +105,4 @@ public class UserTests extends BaseTest {
 
         }
     }
-
 }
